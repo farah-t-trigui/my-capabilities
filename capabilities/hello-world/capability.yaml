@@ -1,0 +1,10 @@
+apiVersion: naftiko.io/v1alpha3
+kind: Capability
+metadata:
+  name: hello-world
+  namespace: default
+  labels:
+    naftiko.io/tier: standard
+spec:
+  specRef:
+    configMap: hello-world-spec
