@@ -1,0 +1,10 @@
+apiVersion: naftiko.io/v1alpha3
+kind: Capability
+metadata:
+  name: alpha4-step6
+  namespace: default
+  labels:
+    naftiko.io/tier: standard
+spec:
+  specRef:
+    configMap: alpha4-step6-spec
