@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fleet-status-spec
+  namespace: default
+data:
+  capability.yaml: |
+    ikanos: "1.0.0-alpha4"
+    info:
+      display: Fleet Status API
+      description: "Simple fleet status REST API"
+      labels:
+        naftiko.io/tier: standard
+        naftiko.io/domain: platform
+    capability:
+      exposes:
+        - type: rest
+          address: "0.0.0.0"
+          port: 3001
+          namespace: fleet-api
+          resources:
+            - path: /status
+              name: status
+              operations:
+                - method: GET
+                  outputParameters:
+                    - name: status
+                      type: string
+                      value: "operational"
+                    - name: fleet
+                      type: string
+                      value: "Naftiko Fleet"
+                    - name: timestamp
+                      type: string
+                      value: "2026-06-04T00:00:00Z"
+        - type: control
+          address: "0.0.0.0"
+          port: 9090
+          observability:
+            enabled: true
+            metrics:
+              local:
+                enabled: true
+            traces:
+              sampling: 1.0
+              propagation: w3c

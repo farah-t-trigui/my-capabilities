@@ -1,0 +1,12 @@
+apiVersion: naftiko.io/v1alpha3
+kind: Capability
+metadata:
+  name: fleet-status
+  namespace: default
+  labels:
+    naftiko.io/tier: standard
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  specRef:
+    configMap: fleet-status-spec
